@@ -82,8 +82,8 @@
 				Choisissez un mot de passe.
 			</div>
 			
-			<div class="errormessage" *ngIf="register_form.controls.password.hasError('pattern') && (register_form.controls.password.dirty)">
-				Votre mot de passe doit contenir 5 caractères minimum, au moins 1 lettre minuscule, 1 lettre majuscule, 1 numéro et 1 caractère spécial, et ne doit pas dépasser 15 caractères.
+			<div class="errormessage" *ngIf="(register_form.controls.password.hasError('minlength') || register_form.controls.password.hasError('maxlength')) && (register_form.controls.password.dirty)">
+				Votre mot de passe doit avoir une longueur comprise entre 4 et 30 caractères.
 			</div>
 			
 			<ion-item>
@@ -92,11 +92,7 @@
 				</ion-label>
 				<ion-input type="password" placeholder="Le même qu'au dessus" formControlName="passwordconfirm"></ion-input>
 			</ion-item>
-			
-			<div class="errormessage" *ngIf="register_form.controls.password.hasError('pattern') && (register_form.controls.passwordconfirm.dirty)">
-				Veuillez d'abord choisir un mot de passe valide.
-			</div>
-			
+
 			<div class="errormessage" *ngIf="!register_form.controls.password.hasError('pattern') && register_form.controls.passwordconfirm.hasError('password_mismatch') && (register_form.controls.passwordconfirm.dirty)">
 				Les deux mots de passe ne correspondent pas.
 			</div>

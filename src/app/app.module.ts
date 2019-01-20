@@ -10,13 +10,17 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { RegisterPage } from '../pages/register/register';
 import { JoinPage } from '../pages/join/join';
+import { SubscribedPage } from '../pages/subscribed/subscribed';
+import { RegisterErrorPage } from '../pages/register-error/register-error';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
 	RegisterPage,
-	JoinPage
+	JoinPage,
+	SubscribedPage,
+	RegisterErrorPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,9 @@ import { JoinPage } from '../pages/join/join';
     MyApp,
     HomePage,
 	RegisterPage,
-	JoinPage
+	JoinPage,
+	SubscribedPage,
+	RegisterErrorPage
   ],
   providers: [
     StatusBar,

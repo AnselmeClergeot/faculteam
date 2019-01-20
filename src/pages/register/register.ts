@@ -21,6 +21,9 @@ import {
     HttpClient
 } from '@angular/common/http';
 
+import { SubscribedPage } from '../subscribed/subscribed';
+import { RegisterErrorPage } from '../register-error/register-error';
+
 @IonicPage()
 
 @Component({
@@ -103,7 +106,8 @@ export class RegisterPage {
 
             password: new FormControl('', Validators.compose([
                 Validators.required,
-                Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,15}$"),
+                Validators.minLength(4),
+				Validators.maxLength(30)
             ])),
 
             passwordconfirm: new FormControl('', Validators.required),
@@ -141,7 +145,13 @@ export class RegisterPage {
 
         this.http.post(url, data, headers).subscribe(
             (result) => {
-                console.log(result)
+                if(result == '0') {
+					this.navCtrl.push(SubscribedPage);
+					this.navCtrl.remove(1);
+				}
+				else {
+					this.navCtrl.push(RegisterErrorPage);
+				}
             }, (err) => {
                 console.log(err);
             }
