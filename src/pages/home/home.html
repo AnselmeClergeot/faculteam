@@ -9,16 +9,17 @@
 <ion-content padding>
 	<h4>Connectez-vous à votre compte et rejoignez votre groupe d'amphi !</h4>
 	
+	<form [formGroup]="login_form" (ngSubmit)="connect()">
 	<ion-list>
 
   <ion-item>
     <ion-label color="primary" stacked>Votre e-mail</ion-label>
-    <ion-input type="email" placeholder="abc@xyz.com"></ion-input>
+    <ion-input formControlName="mail" type="email" placeholder="abc@xyz.com"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary" stacked>Votre mot de passe</ion-label>
-    <ion-input type="password" placeholder="..."></ion-input>
+    <ion-input formControlName="password" type="password" placeholder="..."></ion-input>
   </ion-item>
   
   <ion-item>
@@ -32,5 +33,6 @@
   </ion-item>
 
 </ion-list>
+</form>
 	
 </ion-content>
