@@ -1,0 +1,111 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>
+			Inscription
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding no-bounce>
+
+	<h4>Inscrivez-vous. Cela prend moins d'une minute !</h4>
+	
+	<form [formGroup]="register_form" (ngSubmit)="register()">
+	
+		<ion-list>
+		
+			<ion-item>
+				<ion-label color="primary" stacked>
+					Votre adresse e-mail
+				</ion-label>
+				<ion-input type="email" formControlName="mail" placeholder="Elle vous servira à vous connecter"></ion-input>
+			</ion-item>
+			
+			<div class="errormessage" *ngIf="register_form.controls.mail.hasError('required') && (register_form.controls.mail.dirty)">
+				Merci de rentrer votre adrese e-mail. Nous la garderons secrète, promis !
+			</div>
+			
+			<div class="errormessage" *ngIf="!register_form.controls.mail.hasError('required') && register_form.controls.mail.hasError('email') && (register_form.controls.mail.dirty)">
+				Ceci n'est pas un format d'adresse e-mail valide.
+			</div>
+			
+			<div class="errormessage" *ngIf="register_form.controls.mail.hasError('not_available')">
+				Cette adresse mail est déjà utilisée. Merci d'en choisir une autre.
+			</div>
+			
+			<ion-item>
+				<ion-label color="primary" stacked>
+					Votre prénom
+				</ion-label>
+				<ion-input placeholder="Prénom" formControlName="firstname"></ion-input>
+			</ion-item>
+			
+			<div class="errormessage" *ngIf="register_form.controls.firstname.hasError('required') && (register_form.controls.firstname.dirty)">
+				Merci de rentrer votre prénom.
+			</div>
+			
+			<div class="errormessage" *ngIf="register_form.controls.firstname.hasError('pattern') && (register_form.controls.firstname.dirty)">
+				Un prénom n'est composé que de lettres.
+			</div>
+			
+			<div class="errormessage" *ngIf="(register_form.controls.firstname.hasError('minlength') || register_form.controls.firstname.hasError('maxlength')) && (register_form.controls.firstname.dirty)">
+				Votre prénom doit faire entre 2 et 15 caractères.
+			</div>
+			
+			<ion-item>
+				<ion-label color="primary" stacked>
+					Votre nom de famille
+				</ion-label>
+				<ion-input placeholder="Nom" formControlName="lastname"></ion-input>
+			</ion-item>
+			
+			<div class="errormessage" *ngIf="register_form.controls.lastname.hasError('required') && (register_form.controls.lastname.dirty)">
+				Merci de rentrer votre nom de famille.
+			</div>
+			
+			<div class="errormessage" *ngIf="register_form.controls.lastname.hasError('pattern') && (register_form.controls.lastname.dirty)">
+				Un nom n'est composé que de lettres.
+			</div>
+			
+			<div class="errormessage" *ngIf="(register_form.controls.lastname.hasError('minlength') || register_form.controls.lastname.hasError('maxlength')) && (register_form.controls.lastname.dirty)">
+				Votre nom doit faire entre 2 et 20 caractères.
+			</div>
+			
+			<ion-item>
+				<ion-label color="primary" stacked>
+					Votre mot de passe
+				</ion-label>
+				<ion-input type="password" placeholder="Minimum 5 caractères" formControlName="password" ></ion-input>
+			</ion-item>
+			
+			<div class="errormessage" *ngIf="register_form.controls.password.hasError('required') && (register_form.controls.password.dirty)">
+				Choisissez un mot de passe.
+			</div>
+			
+			<div class="errormessage" *ngIf="register_form.controls.password.hasError('pattern') && (register_form.controls.password.dirty)">
+				Votre mot de passe doit contenir 5 caractères minimum, au moins 1 lettre minuscule, 1 lettre majuscule, 1 numéro et 1 caractère spécial, et ne doit pas dépasser 15 caractères.
+			</div>
+			
+			<ion-item>
+				<ion-label color="primary" stacked>
+					Confirmez votre mot de passe
+				</ion-label>
+				<ion-input type="password" placeholder="Le même qu'au dessus" formControlName="passwordconfirm"></ion-input>
+			</ion-item>
+			
+			<div class="errormessage" *ngIf="register_form.controls.password.hasError('pattern') && (register_form.controls.passwordconfirm.dirty)">
+				Veuillez d'abord choisir un mot de passe valide.
+			</div>
+			
+			<div class="errormessage" *ngIf="!register_form.controls.password.hasError('pattern') && register_form.controls.passwordconfirm.hasError('password_mismatch') && (register_form.controls.passwordconfirm.dirty)">
+				Les deux mots de passe ne correspondent pas.
+			</div>
+			
+			<ion-item>
+				<button ion-button type="submit" full [disabled]="!register_form.valid">Je m'inscris</button>
+				<div text-center></div>
+			</ion-item>
+			
+		</ion-list>
+	</form>
+</ion-content>

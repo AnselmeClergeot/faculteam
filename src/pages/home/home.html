@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Connectez-vous
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<h4>Connectez-vous à votre compte et rejoignez votre groupe d'amphi !</h4>
+	
+	<ion-list>
+
+  <ion-item>
+    <ion-label color="primary" stacked>Votre e-mail</ion-label>
+    <ion-input type="email" placeholder="abc@xyz.com"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary" stacked>Votre mot de passe</ion-label>
+    <ion-input type="password" placeholder="..."></ion-input>
+  </ion-item>
+  
+  <ion-item>
+  <button ion-button full (click)="connect()">C'est parti</button>
+  </ion-item>
+  
+  <ion-item>
+  <div text-center>
+  <button ion-button color="light" (click)="register()">Je n'ai pas de compte</button>
+  </div>
+  </ion-item>
+
+</ion-list>
+	
+</ion-content>
