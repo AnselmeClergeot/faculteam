@@ -25,7 +25,6 @@ export class HomePage {
 	login_form : FormGroup;
 
   constructor(public navCtrl: NavController, private formBuilder : FormBuilder, private http : HttpClient) {
-		this.conn_status = '';
 		
         this.login_form = this.formBuilder.group({
 
@@ -48,12 +47,6 @@ export class HomePage {
 	  this.navCtrl.push(RegisterPage);
   }
   
-  connected() {
-	  if(this.conn_status=='unknown_user')
-		  return true;
-	  else return false;
-  }
-  
   connect() {
 	  
 	  var url = 'http://localhost/Server/login.php';
@@ -73,8 +66,6 @@ export class HomePage {
             (result) => {
 
 				result = result['message'];
-				
-				this.conn_status = result;
 				
                 if(result == 'connected') {
 					this.navCtrl.push(JoinPage);

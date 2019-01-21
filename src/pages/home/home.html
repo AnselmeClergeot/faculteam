@@ -9,23 +9,23 @@
 <ion-content padding>
 	<h4>Connectez-vous à votre compte et rejoignez votre groupe d'amphi !</h4>
 	
-	<form [formGroup]="login_form" (ngSubmit)="connect()">
+	
 	<ion-list>
-
+	<form [formGroup]="login_form" (ngSubmit)="connect()">
   <ion-item>
     <ion-label color="primary" stacked>Votre e-mail</ion-label>
     <ion-input formControlName="mail" type="email" placeholder="abc@xyz.com"></ion-input>
   </ion-item>
-
+<div class="errormessage" *ngIf="login_form.controls.mail.hasError('unknown_mail')">
+			Cette adresse mail n'est pas connue. Vérifiez son orthographe.
+		</div>
   <ion-item>
     <ion-label color="primary" stacked>Votre mot de passe</ion-label>
     <ion-input formControlName="password" type="password" placeholder="..."></ion-input>
   </ion-item>
-  <div class="errormessage" *ngIf="login_form.controls.mail.hasError('unknown_mail')">
-			Cette adresse mail n'est pas connue. Vérifiez son orthographe.
-		</div>
+  
 		<div class="errormessage" *ngIf="login_form.controls.password.hasError('wrong_password')">
-			Mot de passe incorrect.
+			Le mot de passe ne correspond pas au compte.
 		</div>
 		<div class="errormessage" *ngIf="login_form.controls.password.hasError('error')">
 			Nous n'avons pas pu vous connecter. Merci de réeessayer plus tard.
@@ -33,14 +33,14 @@
   <ion-item>
   <button ion-button full type="submit">C'est parti</button>
   </ion-item>
-  
+  </form>
   <ion-item>
   <div text-center>
-  <button ion-button color="light" ng-click="register()">Je n'ai pas de compte</button>
+  <button ion-button color="light" (click)="register()">Je n'ai pas de compte</button>
   </div>
   </ion-item>
 
 </ion-list>
-</form>
+
 	
 </ion-content>
