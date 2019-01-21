@@ -47,7 +47,9 @@ export class HomePage {
   }
   
   connect() {
+	  
 	  var url = 'http://localhost/Server/login.php';
+	  
         let data = {
             "mail": this.login_form.controls['mail'].value,
             "password": this.login_form.controls['password'].value
@@ -62,15 +64,19 @@ export class HomePage {
         this.http.post(url, data, headers).subscribe(
             (result) => {
 
-				console.log(result);
+				result = result['message'];
+				
                 if(result == 'connected') {
 					this.navCtrl.push(JoinPage);
 				}
 				else if(result == 'no_such_user') {
-					console.log('Wrong password or mail.');
+					console.log('Unknown user.');
+				}
+				else if(result == 'wrong_password') {
+					console.log('Wrong password');
 				}
 				else {
-					console.log('ERROR');
+					console.log('error');
 				}
             }, (err) => {
                 console.log(err);
