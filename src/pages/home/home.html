@@ -21,9 +21,17 @@
     <ion-label color="primary" stacked>Votre mot de passe</ion-label>
     <ion-input formControlName="password" type="password" placeholder="..."></ion-input>
   </ion-item>
-  
+  <div class="errormessage" *ngIf="login_form.controls.mail.hasError('unknown_mail')">
+			Cette adresse mail n'est pas connue. Vérifiez son orthographe.
+		</div>
+		<div class="errormessage" *ngIf="login_form.controls.password.hasError('wrong_password')">
+			Mot de passe incorrect.
+		</div>
+		<div class="errormessage" *ngIf="login_form.controls.password.hasError('error')">
+			Nous n'avons pas pu vous connecter. Merci de réeessayer plus tard.
+		</div>
   <ion-item>
-  <button ion-button full ng-click="connect()">C'est parti</button>
+  <button ion-button full type="submit">C'est parti</button>
   </ion-item>
   
   <ion-item>
