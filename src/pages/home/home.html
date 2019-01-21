@@ -19,6 +19,9 @@
 <div class="errormessage" *ngIf="login_form.controls.mail.hasError('unknown_mail')">
 			Cette adresse mail n'est pas connue. Vérifiez son orthographe.
 		</div>
+		<div class="errormessage" *ngIf="login_form.controls.mail.hasError('unverified')">
+			Vous n'avez pas activé votre compte. Veuillez cliquer sur le lien envoyé par mail.
+		</div>
   <ion-item>
     <ion-label color="primary" stacked>Votre mot de passe</ion-label>
     <ion-input formControlName="password" type="password" placeholder="..."></ion-input>

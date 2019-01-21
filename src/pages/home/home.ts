@@ -68,7 +68,7 @@ export class HomePage {
 				result = result['message'];
 				
                 if(result == 'connected') {
-					this.navCtrl.push(JoinPage);
+					this.navCtrl.setRoot(JoinPage);
 				}
 				else if(result == 'no_such_user') {
 					console.log('Unknown user.');
@@ -77,6 +77,11 @@ export class HomePage {
 					});
 					this.login_form.controls['password'].setErrors({
                 "wrong_password": false
+					});
+				}
+				else if(result == 'unverified') {
+					this.login_form.controls['mail'].setErrors({
+                "unverified": true
 					});
 				}
 				else if(result == 'wrong_password') {
