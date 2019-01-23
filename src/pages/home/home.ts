@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
-import { JoinPage } from '../join/join';
+import { WelcomePage } from '../welcome/welcome';
+import { Storage } from '@ionic/storage';
 
 import {
     HttpClient
@@ -24,7 +25,7 @@ export class HomePage {
 	
 	login_form : FormGroup;
 
-  constructor(public navCtrl: NavController, private formBuilder : FormBuilder, private http : HttpClient) {
+  constructor(public navCtrl: NavController, private formBuilder : FormBuilder, private http : HttpClient, private storage : Storage) {
 		
         this.login_form = this.formBuilder.group({
 
@@ -68,7 +69,10 @@ export class HomePage {
 				result = result['message'];
 				
                 if(result == 'connected') {
-					this.navCtrl.setRoot(JoinPage);
+					this.storage.set('mail', this.login_form.controls['mail'].value);
+					this.storage.set('password', this.login_form.controls['password'].value);
+					
+					this.navCtrl.push(WelcomePage);
 				}
 				else if(result == 'no_such_user') {
 					console.log('Unknown user.');
